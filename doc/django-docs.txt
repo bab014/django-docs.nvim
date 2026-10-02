@@ -1,0 +1,28 @@
+*django-docs.txt* Offline Django documentation search
+
+SETUP                                                   *django-docs-setup*
+
+Requires Neovim 0.10+ and Python 3 with SQLite FTS5.
+>
+  require('django_docs').setup({
+    docs_path = '/path/to/django/build/markdown',
+    python = 'python3',
+    limit = 10,
+  })
+<
+COMMANDS                                                *:DjangoDocs*
+
+:DjangoDocs [query]      Search local sections; prompt if no query is supplied.
+                        Select a result to open its source at the heading line.
+
+                                                        *:DjangoDocsIndex*
+:DjangoDocsIndex        Rebuild the cached index after changing your docs.
+
+The first search builds an index automatically. Indexes live in stdpath('cache')
+under django-docs.nvim and are separate for each docs_path. Release notes and
+contributor documentation are excluded. Search and indexing run asynchronously.
+
+No network, model, or third-party picker is needed. Ranking uses text search;
+results are original documentation, not generated answers.
+
+vim:tw=78:ts=8:ft=help:norl:
